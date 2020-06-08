@@ -44,6 +44,14 @@ public class TestingReactivexTest {
 
         testObserver.assertValueCount(0);
 
+        observable.subscribe(testObserver);
+
+        testObserver.assertComplete();
+
+        testObserver.assertNoErrors();
+
+        testObserver.assertValues("Hello", "world", "!");
+
     }
 
 }

@@ -1,8 +1,5 @@
 package com.acguglielmo.reactivexplayground;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
-
 import org.junit.jupiter.api.Test;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -34,8 +31,6 @@ public class TestingReactivexTest {
 
         final Observable<String> observable = instance.fromIterable();
 
-        assertThat(observable, notNullValue());
-
         final TestObserver<String> testObserver = TestObserver.create();
 
         testObserver.assertNotComplete();
@@ -51,6 +46,21 @@ public class TestingReactivexTest {
         testObserver.assertNoErrors();
 
         testObserver.assertValues("Hello", "world", "!");
+
+    }
+
+    @Test
+    public void withErrorTest() {
+
+        final Observable<String> observable = instance.withErrorOnly();
+
+        final TestObserver<String> testObserver = TestObserver.create();
+
+        observable.subscribe(testObserver);
+
+        testObserver.assertNotComplete();
+
+        testObserver.assertError(RuntimeException.class);
 
     }
 

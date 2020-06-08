@@ -1,2 +1,2 @@
 # reactivex-playground
-Programming pratice with RxJava
+Programming practice with RxJava
